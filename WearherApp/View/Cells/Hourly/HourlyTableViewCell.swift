@@ -5,13 +5,6 @@
 //  Created by Мелкозеров Данила on 12.05.2022.
 //
 
-//
-//  HourlyWeatherCell.swift
-//  WearherApp
-//
-//  Created by Мелкозеров Данила on 06.05.2022.
-//
-
 import UIKit
 
 final class HourlyTableViewCell: UITableViewCell, UICollectionViewDelegateFlowLayout {
@@ -26,10 +19,6 @@ final class HourlyTableViewCell: UITableViewCell, UICollectionViewDelegateFlowLa
         super.awakeFromNib()
         setupCollectionView()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
         
     static func nib() -> UINib {
         UINib(nibName: "HourlyTableViewCell", bundle: nil)
@@ -37,9 +26,8 @@ final class HourlyTableViewCell: UITableViewCell, UICollectionViewDelegateFlowLa
     
     func configure(model: WeatherModel) {
         self.weatherModel = model
-        DispatchQueue.main.async { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.hourlyCollectionView.reloadData()
+        DispatchQueue.main.async {
+            self.hourlyCollectionView.reloadData()
         }
     }
     
@@ -60,7 +48,7 @@ final class HourlyTableViewCell: UITableViewCell, UICollectionViewDelegateFlowLa
         if let weatherModel = weatherModel {
             let hourlyModel = weatherModel.hourly?[index]
             let hourForDate = Date(timeIntervalSince1970: Double(hourlyModel?.dt ?? 0)).getHourForDate()
-            urlStringForImage = "https://openweathermap.org/img/wn/\(hourlyModel?.weather?[0].icon ?? "")@2x.png"
+            urlStringForImage = APIManager.shared.getWeatherImageURL(icon: hourlyModel?.weather?[0].icon ?? "")
             if index == 0 {
                 timeLabelString = "Now"
                 tempLabelString = String(format: "%.f", weatherModel.hourly?[index].temp ?? 0) + "°"

@@ -10,10 +10,8 @@ import CoreLocation
 
 class APIManager {
     static let shared = APIManager()
-        
-    private init() {}
-    
-    let autoCompleteAPIString = "https://autocomplete.travelpayouts.com/places2?locale=en&types[]=city&term="
+            
+    let autoCompleteAPIString = "https://autocomplete.travelpayouts.com/places2?locale=en,ru&types=city&term="
 
     func getLocationCurrentWeatherURL(latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> String {
         var components = URLComponents()
@@ -25,6 +23,15 @@ class APIManager {
                                  URLQueryItem(name: "exclude", value: "minutely"),
                                  URLQueryItem(name: "units", value: "metric"),
                                  URLQueryItem(name: "appid", value: OpenWeatherAPI().key)]
+        guard let componentsString = components.string else { return "" }
+        return componentsString
+    }
+    
+    func getWeatherImageURL(icon: String) -> String {
+        var components = URLComponents()
+        components.scheme = OpenWeatherAPI().scheme
+        components.host = "openweathermap.org"
+        components.path = "/img/wn/\(icon)@2x.png"
         guard let componentsString = components.string else { return "" }
         return componentsString
     }

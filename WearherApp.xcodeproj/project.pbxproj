@@ -31,6 +31,8 @@
 		5C70C663282DEB18005A4714 /* WeatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C70C661282DEB18005A4714 /* WeatherApp.xcdatamodeld */; };
 		5C70C666282E3C3E005A4714 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70C665282E3C3E005A4714 /* CoreDataManager.swift */; };
 		5C70C669282EF2BA005A4714 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70C668282EF2BA005A4714 /* LocationManager.swift */; };
+		5C76C7402834EF4100DFA6CE /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C76C73F2834EF4100DFA6CE /* AlertController.swift */; };
+		5C76C7422838A80100DFA6CE /* WeatherMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C76C7412838A80100DFA6CE /* WeatherMapViewController.swift */; };
 		5CB319F02830E49D007BC4EF /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB319EF2830E49D007BC4EF /* APIManager.swift */; };
 		5CB319F328320197007BC4EF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB319F228320197007BC4EF /* Constants.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +64,8 @@
 		5C70C662282DEB18005A4714 /* Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather.xcdatamodel; sourceTree = "<group>"; };
 		5C70C665282E3C3E005A4714 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		5C70C668282EF2BA005A4714 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		5C76C73F2834EF4100DFA6CE /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		5C76C7412838A80100DFA6CE /* WeatherMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapViewController.swift; sourceTree = "<group>"; };
 		5CB319EF2830E49D007BC4EF /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		5CB319F228320197007BC4EF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,8 +139,8 @@
 		5C6474A02823C1A2000B3828 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
-				5C6474A12823C1C0000B3828 /* NetworkManager.swift */,
 				5CB319EF2830E49D007BC4EF /* APIManager.swift */,
+				5C6474A12823C1C0000B3828 /* NetworkManager.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -174,6 +178,8 @@
 			isa = PBXGroup;
 			children = (
 				5C64748628223AE0000B3828 /* MainViewController.swift */,
+				5C76C7412838A80100DFA6CE /* WeatherMapViewController.swift */,
+				5C76C73F2834EF4100DFA6CE /* AlertController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -318,12 +324,14 @@
 				5CB319F328320197007BC4EF /* Constants.swift in Sources */,
 				5C70C669282EF2BA005A4714 /* LocationManager.swift in Sources */,
 				5C64748728223AE0000B3828 /* MainViewController.swift in Sources */,
+				5C76C7402834EF4100DFA6CE /* AlertController.swift in Sources */,
 				5C64749928238BD6000B3828 /* WeatherModel.swift in Sources */,
 				5C6474B328293654000B3828 /* DailyWeatherCell.swift in Sources */,
 				5C64748328223AE0000B3828 /* AppDelegate.swift in Sources */,
 				5C6474B728293DA6000B3828 /* Extensions.swift in Sources */,
 				5C6474A22823C1C0000B3828 /* NetworkManager.swift in Sources */,
 				5C64748528223AE0000B3828 /* SceneDelegate.swift in Sources */,
+				5C76C7422838A80100DFA6CE /* WeatherMapViewController.swift in Sources */,
 				5C6474C3282B8E19000B3828 /* SearchResultsViewController.swift in Sources */,
 				5C6474B9282A4100000B3828 /* WeatherTableViewSection.swift in Sources */,
 				5C64749E2823BA61000B3828 /* ListCitiesCell.swift in Sources */,

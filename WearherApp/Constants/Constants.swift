@@ -6,11 +6,40 @@
 //
 
 import Foundation
+import UIKit
 
 struct OpenWeatherAPI {
     let scheme = "https"
     let host = "api.openweathermap.org"
     let path = "/data/2.5"
-    let key = "fe5ca93502aab12b25dca025b31bfb11"
+    let key = "INSERT YOUR APIKEY"
 }
 
+enum WeatherErrors: Error {
+    case connectionLost
+    case jsonDecodeFail
+    case incorrectURL
+    case getCoordinateFail
+    case getCityNameFail
+    case isInsertedBefore
+    case addInformation
+    
+    public var description: String {
+        switch self {
+        case .connectionLost:
+            return "Oops... Internet problem, check your connection"
+        case .jsonDecodeFail:
+            return "Can't get weather information, please contact your developers"
+        case .incorrectURL:
+            return "Incorrect URL, change keyboard language to EN and try again"
+        case .getCoordinateFail:
+            return "Can't get coordinates, check your geoposition services"
+        case .getCityNameFail:
+            return "Can't get name of City, check your geoposition services"
+        case .isInsertedBefore:
+            return "Chosen City already added to list of your favourites"
+        case .addInformation:
+            return "You add City to list of your favourites"
+        }
+    }
+}

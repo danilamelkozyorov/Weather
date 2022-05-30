@@ -46,40 +46,24 @@ extension UIImageView {
     }
     
     func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
-        contentMode = mode
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-            else { return }
-            DispatchQueue.main.async() { [weak self] in
-                guard let strongSelf = self else { return }
-                strongSelf.image = image
-            }
-        }.resume()
+        let cacheImage = NSCache<NSString, UIImage>()
+        if let cachedImage = cacheImage.object(forKey: url.absoluteString as NSString) {
+            self.image = cachedImage
+        } else {
+            contentMode = mode
+            URLSession.shared.dataTask(with: url ) { data, response, error in
+                guard
+                    let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                    let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                    let data = data, error == nil,
+                    let image = UIImage(data: data)
+                else { return }
+                cacheImage.setObject(image, forKey: url.absoluteString as NSString)
+                DispatchQueue.main.async {
+                    self.image = image
+                }
+            }.resume()
+        }
     }
 }
 
-extension MainViewController {
-    func alertAddCity(name: String, placeholder: String, completion: @escaping (String) -> Void) {
-        let alertController = UIAlertController(title: name, message: nil, preferredStyle: .alert)
-        
-        let alertOK = UIAlertAction(title: "OK", style: .default) { (action) in
-            let textField = alertController.textFields?.first
-            guard let text = textField?.text else { return }
-            completion(text)
-        }
-        
-        let alertCancel = UIAlertAction(title: "Cancel", style: .cancel)
-        
-        alertController.addAction(alertOK)
-        alertController.addAction(alertCancel)
-        alertController.addTextField { textField in
-            textField.placeholder = placeholder
-        }
-        
-        present(alertController, animated: true, completion: nil)
-    }
-}

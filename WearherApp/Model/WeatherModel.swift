@@ -15,13 +15,13 @@ struct WeatherModel: Decodable {
     let hourly: [Current]?
     let daily: [Daily]?
     lazy var cityName: String = {
-        timezone.deletingPrefixFromTimezone()
+        timezone.deletingPrefixFromTimezone().deletingDashFromText()
     }()
 
-    enum CodingKeys: String, CodingKey {
-        case lat, lon, timezone
-        case current, hourly, daily
-    }
+//    enum CodingKeys: String, CodingKey {
+//        case lat, lon, timezone
+//        case current, hourly, daily
+//    }
 }
 
 // MARK: - Current
@@ -75,6 +75,8 @@ enum Description: String, Codable {
     case scatteredClouds = "scattered clouds"
     case heavyIntensityRain = "heavy intensity rain"
     case rainAndSnow = "rain and snow"
+    case lightSnow = "light snow"
+    case lightIntensityShowerRain = "light intensity shower rain"
 }
 
 // MARK: - Daily

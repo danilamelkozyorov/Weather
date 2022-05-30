@@ -13,6 +13,8 @@ class CoreDataManager {
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var isInserted = false
+    
     func getAllCities(completion: @escaping ([WeatherApp]) -> Void) {
         do {
             let citiesFromCoreData = try context.fetch(WeatherApp.fetchRequest())
@@ -30,6 +32,7 @@ class CoreDataManager {
                 try context.save()
             }
             catch {
+                print(Error.self)
             }
         }
     }
@@ -40,24 +43,27 @@ class CoreDataManager {
             try context.save()
         }
         catch {
+            print(Error.self)
         }
     }
     
     func isInsertedBefore(name: String) -> Bool {
         let fetch = WeatherApp.fetchRequest()
         let predicate = NSPredicate(format: "cityName == %@", name)
+        
+        isInserted = false
+
         fetch.predicate = predicate
         var result = [WeatherApp]()
-        var inserted = false
         do {
             result = try context.fetch(fetch)
             if result.count > 0 {
-                inserted = true
+                isInserted = true
             }
         } catch {
             print(error)
         }
-        return inserted
+        return isInserted
     }
 }
 

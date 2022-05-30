@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import CoreLocation
+
+protocol WeatherDetailViewDelegate: AnyObject {
+    func transitCoordinateFromMap(coordinate: CLLocationCoordinate2D?, cityName: String)
+}
 
 final class WeatherDetailView: UIViewController {
             
@@ -16,6 +21,8 @@ final class WeatherDetailView: UIViewController {
     var dailyModel: [Daily]?
     var hourlyModel: WeatherModel?
     
+    weak var delegate: WeatherDetailViewDelegate?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -24,6 +31,15 @@ final class WeatherDetailView: UIViewController {
 
     private func configureView() {
         view.backgroundColor = .secondarySystemBackground
+        
+        let openMapBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .bookmarks,
+            target: self,
+            action: #selector(openMapView)
+            )
+        self.navigationItem.rightBarButtonItem  = openMapBarButtonItem
+        self.navigationItem.backButtonTitle = ""
+
     }
     
 // MARK: - Setup tableView
@@ -85,7 +101,7 @@ final class WeatherDetailView: UIViewController {
             
         ])
         
-        cityLabel.text = location?.deletingPrefixFromTimezone().deletingDashFromText()
+        cityLabel.text = location
         cityLabel.textAlignment = .center
         cityLabel.font = UIFont(name: "Helvetica", size: 40)
         
@@ -101,6 +117,13 @@ final class WeatherDetailView: UIViewController {
         feelsLikeLabel.textAlignment = .center
         feelsLikeLabel.font = UIFont(name: "Helvetica", size: 17)
         return headerView
+    }
+            
+    @objc private func openMapView() {
+        let mapView = WeatherMapViewController()
+        mapView.delegate = self
+        mapView.place = hourlyModel
+        navigationController?.pushViewController(mapView, animated: true)
     }
 }
 
@@ -152,5 +175,11 @@ extension WeatherDetailView: UITableViewDelegate, UITableViewDataSource {
         case .daily:
             return section.cellHeight
         }
+    }
+}
+
+extension WeatherDetailView: WeatherMapViewControllerDelegate {
+    func didAddPlace(with coordinate: CLLocationCoordinate2D?, with cityName: String) {
+        delegate?.transitCoordinateFromMap(coordinate: coordinate, cityName: cityName)
     }
 }

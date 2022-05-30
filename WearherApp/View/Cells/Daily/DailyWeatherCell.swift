@@ -20,10 +20,6 @@ final class DailyWeatherCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -38,12 +34,12 @@ final class DailyWeatherCell: UITableViewCell {
         dayLabel.text = Date(timeIntervalSince1970: Double(model.dt)).getDayForDate()
         tempNightLabel.text = String(format: "%.f", model.temp?.night ?? 0) + "°"
         tempDayLabel.text = String(format: "%.f", model.temp?.day ?? 0) + "°"
-        if model.humidity >= 30 {
+        // if humidity is less than 20% set value empty text
+        if model.humidity >= 20 {
             humidityLabel.text = String(model.humidity) + " %"
         } else {
             humidityLabel.text = ""
         }
-        let urlString = "https://openweathermap.org/img/wn/\(model.weather?[0].icon ?? "")@2x.png"
-        humidityImageView.downloaded(from: urlString)
+        humidityImageView.downloaded(from: APIManager.shared.getWeatherImageURL(icon: model.weather?[0].icon ?? ""))
     }
 }
