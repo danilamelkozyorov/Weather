@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol SearchResultsViewControllerDelegate: AnyObject {
-    func didTapPlace(with coordinates: Coordinates)
-}
-
 final class SearchResultsViewController: UIViewController {
     
     private let tableView: UITableView = {

@@ -8,10 +8,6 @@
 import UIKit
 import CoreLocation
 
-protocol WeatherDetailViewDelegate: AnyObject {
-    func transitCoordinateFromMap(coordinate: CLLocationCoordinate2D?, cityName: String)
-}
-
 final class WeatherDetailView: UIViewController {
             
     private let tableView = UITableView()
@@ -21,7 +17,7 @@ final class WeatherDetailView: UIViewController {
     var dailyModel: [Daily]?
     var hourlyModel: WeatherModel?
     
-    weak var delegate: WeatherDetailViewDelegate?
+    weak var delegate: WeatherMapViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -180,6 +176,6 @@ extension WeatherDetailView: UITableViewDelegate, UITableViewDataSource {
 
 extension WeatherDetailView: WeatherMapViewControllerDelegate {
     func didAddPlace(with coordinate: CLLocationCoordinate2D?, with cityName: String) {
-        delegate?.transitCoordinateFromMap(coordinate: coordinate, cityName: cityName)
+        delegate?.didAddPlace(with: coordinate, with: cityName)
     }
 }

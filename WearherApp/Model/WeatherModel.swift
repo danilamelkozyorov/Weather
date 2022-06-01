@@ -17,11 +17,6 @@ struct WeatherModel: Decodable {
     lazy var cityName: String = {
         timezone.deletingPrefixFromTimezone().deletingDashFromText()
     }()
-
-//    enum CodingKeys: String, CodingKey {
-//        case lat, lon, timezone
-//        case current, hourly, daily
-//    }
 }
 
 // MARK: - Current
@@ -64,18 +59,20 @@ enum Main: String, Codable {
 }
 
 enum Description: String, Codable {
-    case brokenClouds = "broken clouds"
     case fog = "fog"
+    case snow = "snow"
+    case mist = "mist"
     case haze = "haze"
     case clearSky = "clear sky"
-    case fewClouds = "few clouds"
+    case lightSnow = "light snow"
     case lightRain = "light rain"
+    case fewClouds = "few clouds"
+    case rainAndSnow = "rain and snow"
+    case brokenClouds = "broken clouds"
     case moderateRain = "moderate rain"
     case overcastClouds = "overcast clouds"
     case scatteredClouds = "scattered clouds"
     case heavyIntensityRain = "heavy intensity rain"
-    case rainAndSnow = "rain and snow"
-    case lightSnow = "light snow"
     case lightIntensityShowerRain = "light intensity shower rain"
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C339B7D28472AC4004399EF /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C339B7C28472AC4004399EF /* Protocols.swift */; };
 		5C64748328223AE0000B3828 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C64748228223AE0000B3828 /* AppDelegate.swift */; };
 		5C64748528223AE0000B3828 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C64748428223AE0000B3828 /* SceneDelegate.swift */; };
 		5C64748728223AE0000B3828 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C64748628223AE0000B3828 /* MainViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C339B7C28472AC4004399EF /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		5C64747F28223AE0000B3828 /* WearherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WearherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C64748228223AE0000B3828 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C64748428223AE0000B3828 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C339B7B28472AA7004399EF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5C339B7C28472AC4004399EF /* Protocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		5C64747628223AE0000B3828 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +117,7 @@
 				5C6474A32823D648000B3828 /* Model */,
 				5C6474AF28290398000B3828 /* View */,
 				5C6474AE28290370000B3828 /* Controller */,
+				5C339B7B28472AA7004399EF /* Protocols */,
 				5C6474B528293D8F000B3828 /* Helpers */,
 				5C64749A2823AFB0000B3828 /* Support */,
 			);
@@ -323,6 +334,7 @@
 				5C6474AD2828FB63000B3828 /* WeatherDetailView.swift in Sources */,
 				5CB319F328320197007BC4EF /* Constants.swift in Sources */,
 				5C70C669282EF2BA005A4714 /* LocationManager.swift in Sources */,
+				5C339B7D28472AC4004399EF /* Protocols.swift in Sources */,
 				5C64748728223AE0000B3828 /* MainViewController.swift in Sources */,
 				5C76C7402834EF4100DFA6CE /* AlertController.swift in Sources */,
 				5C64749928238BD6000B3828 /* WeatherModel.swift in Sources */,

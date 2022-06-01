@@ -8,10 +8,6 @@
 import UIKit
 import MapKit
 
-protocol WeatherMapViewControllerDelegate: AnyObject {
-    func didAddPlace(with coordinate: CLLocationCoordinate2D?, with cityName: String)
-}
-
 final class WeatherMapViewController: UIViewController {
     
     private let mapView = MKMapView()
@@ -87,7 +83,6 @@ final class WeatherMapViewController: UIViewController {
                 ),
                 animated: true
             )
-            strongSelf.mapView.selectAnnotation(annotation, animated: true)
         }
     }
     
@@ -98,7 +93,6 @@ final class WeatherMapViewController: UIViewController {
         annotation.subtitle = String(Int(temp))
         DispatchQueue.main.async {
             self.mapView.addAnnotation(annotation)
-            self.mapView.selectAnnotation(annotation, animated: true)
         }
     }
     
@@ -126,6 +120,14 @@ final class WeatherMapViewController: UIViewController {
 }
 
 extension WeatherMapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        view.isEnabled = true
+    }
+    
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+        views.forEach({$0.isSelected = true})
+    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard annotation is MKPointAnnotation else { print("no mkpointannotaions"); return nil }
         

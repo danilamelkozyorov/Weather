@@ -272,18 +272,19 @@ extension MainViewController: SearchResultsViewControllerDelegate {
 }
 
 // MARK: - add city from map view coordinates
-extension MainViewController: WeatherDetailViewDelegate {
-    func transitCoordinateFromMap(coordinate: CLLocationCoordinate2D?, cityName: String) {
+extension MainViewController: WeatherMapViewControllerDelegate {
+    func didAddPlace(with coordinate: CLLocationCoordinate2D?, with cityName: String) {
         guard let longitude = coordinate?.longitude,
               let latitude = coordinate?.latitude else { return }
         NetworkManager.shared.fetchWeather(longitude: longitude, latitude: latitude) { [weak self] weather, error in
             guard let strongSelf = self,
                   let weather = weather,
                   error == nil else {
+                guard let self = self else { return }
                 return Alert.shared.inform(
                     title: cityName,
-                    message: WeatherErrors.getCoordinateFail.description,
-                    viewController: MainViewController()
+                    message: error?.description ?? "",
+                    viewController: self
                 )
             }
             strongSelf.favoriteCitiesWeather.append(weather)
