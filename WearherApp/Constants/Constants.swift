@@ -12,7 +12,7 @@ struct OpenWeatherAPI {
     let scheme = "https"
     let host = "api.openweathermap.org"
     let path = "/data/2.5"
-    let key = "INSERT YOUR APIKEY"
+    let key = "26899d76bc1ec6c2e91a75cdb92932fe"
 }
 
 enum WeatherErrors: Error {
